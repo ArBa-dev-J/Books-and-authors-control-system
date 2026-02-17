@@ -1,4 +1,4 @@
-import { postNewAuthorM, authorGetM } from "../models/authorsModels.js";
+import { postNewAuthorM, authorGetM, getTopicsByIdM  } from "../models/authorsModels.js";
 
 // upload data to sql db
 
@@ -42,6 +42,33 @@ export const authorGetC = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: authors,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+};
+
+
+// get authors and their book titles by their ids
+
+export const getAuthorsByIdC = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const author = await getTopicsByIdM ({ id });
+
+    if (author.length === 0) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No topics found",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: author,
     });
   } catch (error) {
     res.status(500).json({

@@ -24,3 +24,15 @@ export const authorGetM = async () => {
   on authors.id = books."authorId"
   `;
 };
+
+// get authors and their book titles by their ids
+
+export const getTopicsByIdM = async ({ id }) => {
+  return await sql`
+select authors.*, books.title
+from "authors"
+left join "books"
+on authors.id = books."authorId"
+where authors.id = ${id}
+`;
+};
