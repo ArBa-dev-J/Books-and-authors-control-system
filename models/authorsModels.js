@@ -27,7 +27,7 @@ export const authorGetM = async () => {
 
 // get authors and their book titles by their ids
 
-export const getTopicsByIdM = async ({ id }) => {
+export const getAuthorByIdM = async ({ id }) => {
   return await sql`
 select authors.*, books.title
 from "authors"
@@ -36,3 +36,12 @@ on authors.id = books."authorId"
 where authors.id = ${id}
 `;
 };
+
+// delete authors 
+
+export const deleteAuthorM = async ({id}) => {
+  return sql`
+  delete from "authors"
+  where id = ${id}
+  `
+}

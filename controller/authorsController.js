@@ -1,4 +1,9 @@
-import { postNewAuthorM, authorGetM, getTopicsByIdM  } from "../models/authorsModels.js";
+import {
+  postNewAuthorM,
+  authorGetM,
+  getAuthorByIdM,
+  deleteAuthorM,
+} from "../models/authorsModels.js";
 
 // upload data to sql db
 
@@ -51,13 +56,12 @@ export const authorGetC = async (req, res) => {
   }
 };
 
-
 // get authors and their book titles by their ids
 
 export const getAuthorsByIdC = async (req, res) => {
   try {
     const { id } = req.params;
-    const author = await getTopicsByIdM ({ id });
+    const author = await getAuthorByIdM({ id });
 
     if (author.length === 0) {
       return res.status(404).json({
@@ -69,6 +73,35 @@ export const getAuthorsByIdC = async (req, res) => {
     res.status(200).json({
       status: "success",
       data: author,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+};
+
+// delete author by their id
+
+export const deleteAuthorC = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const author = await getAuthorByIdM({ id });
+
+    if (author.length === 0) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No topics found",
+      });
+    }
+
+    await deleteAuthorM({id});
+
+    res.status(200).json({
+      status: "success",
+      data: "Data was successfully deleted",
     });
   } catch (error) {
     res.status(500).json({

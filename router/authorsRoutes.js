@@ -3,6 +3,7 @@ import {
   postNewAuthorC,
   authorGetC,
   getAuthorsByIdC,
+  deleteAuthorC,
 } from "../controller/authorsController.js";
 import validate from "../validate/validate.js";
 import validateNewAuthors from "../validate/validateNewAuthors.js";
@@ -16,6 +17,6 @@ authorsRoutes
   .post(validateNewAuthors, validate, postNewAuthorC)
   .get(authorGetC);
 
-authorsRoutes.route("/:id").get(getAuthorsByIdC);
+authorsRoutes.route("/:id").get(getAuthorsByIdC).delete(deleteAuthorC);
 
 export default authorsRoutes;
