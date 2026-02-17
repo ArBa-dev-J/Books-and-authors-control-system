@@ -1,0 +1,28 @@
+{
+  "name": "books-and-authors-control-system",
+  "version": "1.0.0",
+  "description": "Books and authors control backend system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArBa-dev-J/Books-and-authors-control-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArBa-dev-J/Books-and-authors-control-system/issues"
+  },
+  "homepage": "https://github.com/ArBa-dev-J/Books-and-authors-control-system#readme",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.1",
+    "nodemon": "^3.1.11",
+    "postgres": "^3.4.8"
+  }
+}
